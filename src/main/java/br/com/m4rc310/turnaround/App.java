@@ -1,13 +1,14 @@
-package br.com.m4rc310.dashboard;
+package br.com.m4rc310.turnaround;
 
 import java.util.TimeZone;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 
-@SpringBootApplication
+import jakarta.annotation.PostConstruct;
+
+@SpringBootApplication()
 @PropertySource(ignoreResourceNotFound = true, value = "classpath:/security.properties")
 public class App {
 
@@ -15,7 +16,7 @@ public class App {
 		SpringApplication.run(App.class, args);
 	}
 	
-	@Bean
+    @PostConstruct
 	void init() {
 	    TimeZone.setDefault(TimeZone.getTimeZone("GMT-3"));
 	}
